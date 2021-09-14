@@ -1,0 +1,195 @@
+@use "variables";
+
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Roboto:wght@300;400;500&family=Montserrat:wght@500&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: variables.$Roboto;
+  font-weight: 300;
+  background-color: variables.$black;
+  color: variables.$white;
+}
+
+img {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: variables.$white
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  font-weight: normal;
+}
+
+.h1 {
+  font-family: variables.$Lato;
+  font-size: 2.25rem;
+  line-height: 100%;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.h2 {
+  font-size: 1.5rem;
+  line-height: 117%;
+  font-weight: 400;
+  font-variant: small-caps;
+}
+
+.p {
+  font-size: 1.125rem;
+  line-height: 139%;
+  font-weight: 300;
+}
+
+.container {
+  width: 100%;
+  padding: 0 3.75rem;
+}
+
+.button {
+  cursor: pointer;
+  position: relative;
+  width: 18.75rem;
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: variables.$white;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid variables.$white;
+
+  &:hover {
+    background: variables.$white;
+    color: variables.$black;
+    border: 1px solid transparent;
+  }
+}
+
+.parallax {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+
+  &__background {
+    margin-top: -3rem;
+    width: 100%;
+    aspect-ratio: 10/7;
+    z-index: 1;
+  }
+
+  &__content {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+  }
+}
+
+.input {
+  height: 2.125rem;
+  background: none;
+  border: 1px solid rgba(235, 249, 247, 0.5); //variables.$white
+  font-size: 1.125rem;
+  line-height: 139%;
+  font-family: variables.$Roboto;
+  font-weight: 300;
+  padding: .375rem 1rem;
+  outline: none;
+  color: rgba(235, 249, 247, 0.5);
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+@media (min-width: 721px) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media (min-width: 810px) {
+  html {
+    font-size: 9px;
+  }
+}
+
+@media (min-width: 900px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 990px) {
+  html {
+    font-size: 11px;
+  }
+}
+
+@media (min-width: 1080px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1170px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1260px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1350px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1440px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
+  *:not(html) {
+    font-size: 1rem!important;
+  }
+  html {
+    font-size: 3.73vw;
+  }
+  .container {
+    width: 100%;
+    padding: 0 1.28571428571rem;
+  }
+}
+
+
+
+
