@@ -16,6 +16,7 @@
         </NuxtLink>
       </div>
     </div>
+    <h2 class='h2 compilations__header mobile' v-if='isMobile'>{{categoryName}}</h2>
     <ShopperCard
       v-for="shopper in shoppers"
       :shopper-data="shopper"
@@ -29,11 +30,14 @@
 import { compilations } from '@/utils/compilations';
 import { request } from '@/api/server';
 import { routeToCompilation, routeToModel } from '@/utils/routeToCode';
+import { isMobile } from '../../mixins/isMobile';
 
 async function getShoppers(parameters) {
   let shoppers;
+  let categoryName
   if (!parameters.category) {
     shoppers = await request('/get_all');
+    categoryName = "Все шоперы"
   } else if (parameters.category.startsWith('compilation')) {
     const id = compilations.find(
       ({ link }) => link === parameters.category
@@ -41,16 +45,19 @@ async function getShoppers(parameters) {
     shoppers = await request('/groups', {
       id
     });
+    categoryName = "Подборка" // Используй только это слово, название подборки с цифрой не пиши
   } else {
     shoppers = await request('/get_by_model', {
       id: routeToModel[parameters.category]
     });
+    categoryName = "Модель" // Используй только это слово, какой это шопер потом определю
   }
-  return { shoppers };
+  return { shoppers, categoryName };
 }
 
 export default {
   layout: 'catalog',
+  mixins: [isMobile],
   data() {
     return {
       compilations
@@ -68,6 +75,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.mobile{
+  display: none;
+}
+
 .shoppers {
   top: 6rem;
   margin-left: 29%;
@@ -129,7 +141,11 @@ export default {
     margin-bottom: 3.125rem;
   }
 }
-@media (max-width: 1024px) and (orientation: portrait) {
+@media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
+  .mobile{
+    display: block;
+  }
+
   .shoppers {
     display: grid;
     grid-template-columns: 50% 50%;
@@ -144,6 +160,11 @@ export default {
   }
   .compilations {
     display: none;
+    &__header{
+      grid-column-start: 1;
+      grid-column-end: 3;
+      margin-bottom: 1.78571428571rem;
+    }
   }
 }
 </style>

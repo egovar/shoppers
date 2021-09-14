@@ -77,11 +77,25 @@ export default {};
 @media (max-width: 1024px) and (orientation: portrait) {
   .manufacture {
     background: none;
+    padding-top: 0;
+    padding-bottom: 2.21428571429rem;
+    &__header{
+      margin-bottom: 1.42857142857rem;
+    }
     &__container {
       max-height: unset;
+      padding-bottom: 5.5rem;
     }
     &__text {
       width: 100%;
+      margin-bottom: 1.28571428571rem;
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+    &__social-media{
+      position: unset;
+      margin: auto;
     }
   }
 }

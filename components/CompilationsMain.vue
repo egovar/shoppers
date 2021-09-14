@@ -37,8 +37,8 @@
       </div>
     </div>
     <div class="compilations compilations_mobile container">
-      <h2 class="h2 compilations__title"></h2>
-      <p class="compilations__subtitle"></p>
+      <h2 class="h2 compilations__title">Шоперы из нашей персональной подборки</h2>
+      <p class="compilations__subtitle">Специально для вас</p>
       <div class="compilations__badges">
         <button
           v-for="(category, index) in compilations"
@@ -61,6 +61,7 @@
           :key="shopper.id"
         />
       </div>
+      <button class='button compilations__button'>Перейти к подборке</button>
     </div>
   </fragment>
 </template>
@@ -147,18 +148,35 @@ export default {
   }
 }
 
-@media (max-width: 1024px) and (orientation: portrait) {
+@media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
   .compilations {
+    height: unset;
+    padding-bottom: 3.57142857143rem;
     &:not(&_mobile) {
       display: none;
     }
     &_mobile {
       display: block;
     }
+    &__title{
+      text-align: center;
+      font-weight: 500;
+      margin-bottom: 0.35714285714rem;
+    }
+    &__subtitle{
+      text-align: center;
+      font-weight: 300;
+      margin-bottom: 1.42857142857rem;
+    }
+    &__button{
+      position: unset;
+      margin: auto;
+    }
     &__shoppers {
       display: grid;
       grid-template-columns: 50% 50%;
       gap: 0.35714285714rem;
+      margin-bottom: 1.28571428571rem;
     }
     &__badges {
       display: flex;

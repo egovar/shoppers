@@ -25,7 +25,6 @@
         </NuxtLink>
       </div>
     </header>
-
     <header class="header header_mobile container">
       <button
         class="header__burger-button"
@@ -178,6 +177,10 @@ export default {
   padding-top: 0.625rem;
   padding-bottom: 1.875rem;
 
+  &__menu{
+    display: none;
+  }
+
   &__link {
     font-family: variables.$Montserrat;
     font-weight: 500;
@@ -227,7 +230,7 @@ export default {
   }
 }
 
-@media (max-width: 1024px) and (orientation: portrait) {
+@media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
   .header {
     &:not(&_mobile) {
       display: none;

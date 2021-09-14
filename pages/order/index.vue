@@ -9,7 +9,7 @@
           class="order__input order__input_with-text input"
           placeholder="Email"
         />
-        <span class="order__is-place-ok h2">
+        <span class="order__is-place-ok h2 desktop">
           Ваш город находится в зоне доставки
         </span>
       </div>
@@ -18,6 +18,9 @@
         placeholder="Введите адрес"
       />
       <div class="order__map" id="order__map"></div>
+      <span class="order__is-place-ok h2">
+          Ваш город находится в зоне доставки
+        </span>
     </div>
     <div class="order__summary">
       <p class="p order__sum-label">Сумма заказа:</p>
@@ -32,7 +35,9 @@
         Перейти к оплате
       </a>
     </div>
+    <SocialMedia class="order__social-media" />
   </main>
+
 </template>
 
 <script>
@@ -109,6 +114,10 @@ export default {
   justify-content: space-between;
   padding-top: 6rem;
   padding-bottom: 3.875rem;
+
+  &__social-media{
+    display: none
+  }
 
   &__inputs {
     width: 73%;
@@ -190,6 +199,48 @@ export default {
 
     &_selected {
       background-color: rgba(70, 75, 77, 1);
+    }
+  }
+}
+
+@media (max-width: 1024px) and (orientation: portrait), (max-width: 720px){
+  .desktop{
+    display: none;
+  }
+
+  .order{
+    display: block;
+    padding-top: 6.5rem;
+    height: unset;
+    &__payment-methods{
+      margin-bottom: 2.85714285714rem;
+    }
+
+    &__social-media{
+      display: flex;
+      margin: 0 auto 1.85714285714rem;
+    }
+
+    &__payment-button {
+      margin: 0 auto 3.57142857143rem;
+    }
+
+    &__backwards{
+      display: none;
+    }
+    &__is-place-ok{
+      text-align: center;
+      margin-top: 1.42857142857rem;
+      margin-bottom: 2.85714285714rem;
+    }
+    &__inputs{
+      width: 100%;
+    }
+    &__input{
+      width: 100%;
+    }
+    &__payment-methods-label {
+      margin-top: 1.42857142857rem;
     }
   }
 }

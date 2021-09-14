@@ -44,4 +44,10 @@ export default {};
     }
   }
 }
+
+@media (max-width: 1024px) and (orientation: portrait), (max-width: 720px){
+  .app-footer{
+    display: none;
+  }
+}
 </style>

@@ -100,9 +100,17 @@ export default {
     width: 13rem;
   }
 }
-@media (max-width: 1024px) and (orientation: portrait) {
+@media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
   .delivery {
     flex-wrap: wrap;
+    padding-top: 0;
+    padding-bottom: 2.14285714286rem;
+    &__header{
+      margin-bottom: 1.42857142857rem;
+    }
+    &__text{
+      margin-bottom: 1.42857142857rem;
+    }
     &__for-customers {
       width: 100%;
       margin-right: 0;
