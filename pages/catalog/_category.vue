@@ -23,6 +23,7 @@
       class="shoppers__card"
       :key="shopper.id"
     />
+    <SocialMedia class='compilations__social-media mobile'/>
   </main>
 </template>
 
@@ -31,6 +32,7 @@ import { compilations } from '@/utils/compilations';
 import { request } from '@/api/server';
 import { routeToCompilation, routeToModel } from '@/utils/routeToCode';
 import { isMobile } from '../../mixins/isMobile';
+import SocialMedia from '../../components/SocialMedia';
 
 async function getShoppers(parameters) {
   let shoppers;
@@ -56,6 +58,7 @@ async function getShoppers(parameters) {
 }
 
 export default {
+  components: { SocialMedia },
   layout: 'catalog',
   mixins: [isMobile],
   data() {
@@ -89,7 +92,7 @@ export default {
   flex-wrap: wrap;
   padding-top: 6rem;
   padding-right: 3.75rem;
-  padding-bottom: 9.375rem;
+
 
   &__card {
     &:nth-child(4n + 1),
@@ -164,6 +167,13 @@ export default {
       grid-column-start: 1;
       grid-column-end: 3;
       margin-bottom: 1.78571428571rem;
+    }
+    &__social-media{
+      display: flex;
+      margin: 10rem auto 1.5rem;
+      grid-column-start: 1;
+      grid-column-end: 3;
+
     }
   }
 }

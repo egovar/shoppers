@@ -34,6 +34,7 @@
     <div class="shopper-card__content_mobile">
       <h2 class="shopper-card__title h2">{{ shopperData.name }}</h2>
       <p class="shopper-card__price p">₽ {{ shopperData.price / 100 }}</p>
+
     </div>
   </article>
 </template>
@@ -42,8 +43,10 @@
 import { modelToSize } from '@/utils/modelToSize';
 import { codeToColor } from '@/utils/codeToColor';
 import { isMobile } from '@/mixins/isMobile';
+import SocialMedia from './SocialMedia';
 
 export default {
+  components: { SocialMedia },
   mixins: [isMobile],
   props: ['shopperData'],
   data() {

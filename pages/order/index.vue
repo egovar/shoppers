@@ -35,7 +35,9 @@
         Перейти к оплате
       </a>
     </div>
-    <SocialMedia class="order__social-media" />
+    <div class='order__social-media'>
+      <SocialMedia class='order__media-buttons'/>
+    </div>
   </main>
 
 </template>
@@ -216,9 +218,16 @@ export default {
       margin-bottom: 2.85714285714rem;
     }
 
+    &__media-buttons{
+      margin: auto;
+    }
+
     &__social-media{
-      display: flex;
-      margin: 0 auto 1.85714285714rem;
+      display: block;
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: 1.5rem;
     }
 
     &__payment-button {

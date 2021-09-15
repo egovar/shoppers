@@ -105,6 +105,10 @@
         Перейти к оформлению
       </NuxtLink>
     </div>
+    <div class='cart__social-media mobile'>
+      <SocialMedia class='cart__media-buttons'/>
+    </div>
+
   </main>
 </template>
 
@@ -113,9 +117,10 @@ import { modelToSize } from '@/utils/modelToSize';
 import { codeToColor } from '@/utils/codeToColor';
 import { request } from '@/api/server';
 import ShopperData from '@/components/ShopperData';
+import SocialMedia from '../../components/SocialMedia';
 
 export default {
-  components: { ShopperData },
+  components: { SocialMedia, ShopperData },
   data() {
     return {
       cart: [],
@@ -182,6 +187,9 @@ export default {
 
 <style scoped lang="scss">
 @use '~assets/style/variables';
+.mobile{
+  display: none;
+}
 
 .cart {
   margin-top: 6rem;
@@ -297,7 +305,11 @@ export default {
   }
 }
 
-@media (max-width: 1024px) and (orientation: portrait) {
+@media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
+  .mobile{
+    display: block;
+  }
+
   .cart {
     &__grid {
       display: block;
@@ -310,6 +322,17 @@ export default {
       &:not(&_main) {
         display: none;
       }
+    }
+
+    &__media-buttons{
+      margin: auto;
+    }
+
+    &__social-media{
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: 1.5rem;
     }
 
     &__shopper-name {

@@ -1,5 +1,6 @@
 <template>
   <main class="shopper container">
+    <SocialMedia class='shopper__social-media mobile'/>
     <div class="shopper__info">
       <BackwardsArrow
         to="/catalog/big-with-pocket"
@@ -18,11 +19,13 @@
       <button class="button shopper__add-to-cart-button" @click="addToCart">
         Добавить в корзину
       </button>
+
     </div>
     <ShopperCarousel
       :photos="shopperData.pictures"
       :style="{ background: codeToColor[shopperData.color_id] }"
     />
+
   </main>
 </template>
 
@@ -30,6 +33,7 @@
 import { request } from '@/api/server';
 import { codeToColor } from '@/utils/codeToColor';
 import ShopperData from '@/components/ShopperData';
+import SocialMedia from '../../../components/SocialMedia';
 
 async function getShopper(parameters) {
   return {
@@ -37,6 +41,7 @@ async function getShopper(parameters) {
   };
 }
 export default {
+  components: { SocialMedia },
   data() {
     return {
       codeToColor
@@ -64,6 +69,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.mobile{
+  display: none;
+}
+
 .shopper {
   height: 100vh;
   padding-top: calc(6rem + 0.875rem * 1.21);
@@ -101,7 +110,10 @@ export default {
   }
 }
 
-@media (max-width: 1024px) and (orientation: portrait) {
+@media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
+  .mobile{
+    display: flex;
+  }
   .shopper {
     flex-direction: column-reverse;
     height: unset;
@@ -110,6 +122,9 @@ export default {
     }
     &__backwards-arrow {
       display: none;
+    }
+    &__social-media{
+      margin: 3.57142857143rem auto 0;
     }
   }
 }
