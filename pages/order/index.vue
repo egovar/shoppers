@@ -2,25 +2,68 @@
   <main class="order container">
     <div class="order__inputs">
       <BackwardsArrow to="/cart" class="order__backwards" />
-      <input class="order__input input" placeholder="ФИО" />
-      <input class="order__input input" placeholder="Телефон" />
-      <div class="input-with-text-wrapper">
-        <input
-          class="order__input order__input_with-text input"
-          placeholder="Email"
-        />
-        <span class="order__is-place-ok h2 desktop">
-          Ваш город находится в зоне доставки
-        </span>
-      </div>
       <input
-        class="order__input order__input_address input"
-        placeholder="Введите адрес"
+        class="order__input input"
+        placeholder="ФИО"
+        v-model="customerName"
       />
-      <div class="order__map" id="order__map"></div>
-      <span class="order__is-place-ok h2">
-          Ваш город находится в зоне доставки
-        </span>
+      <input
+        class="order__input input"
+        placeholder="Телефон"
+        v-model="customerPhone"
+      />
+      <input
+        class="order__input input order__input_email"
+        placeholder="Email"
+        v-model="customerEmail"
+      />
+      <div class="order__delivery-type" ref="radios">
+        <p class="h2 order__delivery-header">Доставка</p>
+        <input
+          type="radio"
+          name="delivery_type"
+          v-model="deliveryType"
+          value="courier"
+          id="courier_delivery"
+        />
+        <label for="courier_delivery" class="p">Курьер</label>
+        <input
+          type="radio"
+          name="delivery_type"
+          v-model="deliveryType"
+          value="pvz"
+          id="pvz_delivery"
+        />
+        <label for="pvz_delivery" class="p">Пункт самовывоза</label>
+      </div>
+      <template v-if="deliveryType === 'courier'">
+        <input
+          class="order__input input"
+          placeholder="Индекс"
+          v-model="customerZip"
+        />
+        <input
+          class="order__input order__input_address input"
+          placeholder="Введите адрес"
+          v-model="customerAddress"
+        />
+        <p class="h2">
+          В доставку включены только города из
+          <span class="order__list-link" @click="toList()">списка</span>
+        </p>
+      </template>
+      <p class="h2 order__choose-pvz" v-show="deliveryType === 'pvz'">
+        {{
+          pvzId
+            ? `Выбран пункт выдачи по адресу ${pvzAddress}, ${pvzZip}`
+            : 'Выберите пункт выдачи'
+        }}
+      </p>
+      <div
+        v-show="deliveryType === 'pvz'"
+        class="order__map"
+        id="order__map"
+      ></div>
     </div>
     <div class="order__summary">
       <p class="p order__sum-label">Сумма заказа:</p>
@@ -31,71 +74,101 @@
           <svg-icon name="credit-card" class="icon" />
         </div>
       </div>
-      <a :href="link" class="order__payment-button button">
+      <a :href="link" class="order__payment-button button" ref="order_button">
         Перейти к оплате
       </a>
     </div>
-    <div class='order__social-media'>
-      <SocialMedia class='order__media-buttons'/>
+    <div class="order__social-media">
+      <SocialMedia class="order__media-buttons" />
     </div>
   </main>
-
 </template>
 
 <script>
 import { request } from '@/api/server';
-import { modelToSize } from '@/utils/modelToSize';
+import { isMobile } from '@/mixins/isMobile';
+
+function scrollToList() {
+  window.scrollTo(
+    0,
+    document.getElementById('cities').getBoundingClientRect().top
+  );
+}
 
 export default {
+  name: 'orderPage',
+  mixins: [isMobile],
   data() {
     return {
       link: undefined,
-      cart: []
+      cart: [],
+      deliveryType: undefined,
+      pvzId: null,
+      pvzAddress: null,
+      pvzZip: null,
+      mapIsLoaded: false,
+      customerName: undefined,
+      customerPhone: undefined,
+      customerEmail: undefined,
+      customerZip: undefined,
+      customerAddress: undefined,
+      promoMultiplier: 1
     };
   },
   computed: {
     orderSum() {
       let sum = 0;
       this.cart.forEach(({ price, quantity }) => (sum += price * quantity));
-      return sum / 100;
+      return (sum / 100) * this.promoMultiplier;
+    }
+  },
+  watch: {
+    deliveryType(newVal) {
+      if (!this.mapIsLoaded && newVal === 'pvz') {
+        b2cMapper({
+          containerId: 'order__map',
+          searchControl: true,
+          callBack: (pvz) => {
+            const pvzData = JSON.parse(pvz);
+            this.pvzId = pvzData.id;
+            this.pvzZip = pvzData.zip || '123456';
+          },
+          containerHeight: !this.isMobile ? '28.5rem' : '40rem'
+        });
+        this.mapIsLoaded = true;
+      }
+    },
+    async pvzId(newVal) {
+      this.pvzAddress = await request('/get_pvz_data', { id: newVal });
+    }
+  },
+  methods: {
+    async toList() {
+      await this.$router.push('/');
+      const list = document.getElementById('promos');
+      if (list) scrollToList();
+      else setTimeout(() => scrollToList(), 500);
     }
   },
   async mounted() {
-    ymaps.ready(() =>
-      b2cMapper({
-        containerId: 'order__map',
-        searchControl: true
-        // containerHeight: '100%'
-      })
-    );
-    this.cart = await Promise.all(
-      this.$store.getters.cart.map(async (shopper) => {
-        const shopperData = await request('/get', {
-          id: shopper.id
-        });
-        return {
-          id: shopper.id,
-          price: shopperData.price,
-          quantity: shopper.quantity
-        };
-      })
-    );
-    this.link = 'https://alfabank.ru/';
+    setTimeout(async () => {
+      this.cart = await Promise.all(
+        this.$store.getters.cart.map(async (shopper) => {
+          const shopperData = await request('/get', {
+            id: shopper.id
+          });
+          return {
+            id: shopper.id,
+            price: shopperData.price,
+            quantity: shopper.quantity
+          };
+        })
+      );
+      this.link = 'https://alfabank.ru/';
+    }, 500);
   },
   head() {
     return {
-      script: [
-        {
-          src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js'
-        },
-        {
-          src: 'https://api.b2cpl.ru/files/outside/b2c-map-pvz.min.js',
-          'data-pvz-array': '2074fbe6-e033-4402-a9e1-696d82b7d50d.json'
-        },
-        {
-          src: 'https://api-maps.yandex.ru/2.1/?apikey=e0be6269-d3de-4a7c-a771-207574ce012c&lang=ru_RU&ver=4.9.7'
-        }
-      ],
       link: [
         {
           rel: 'stylesheet',
@@ -117,8 +190,8 @@ export default {
   padding-top: 6rem;
   padding-bottom: 3.875rem;
 
-  &__social-media{
-    display: none
+  &__social-media {
+    display: none;
   }
 
   &__inputs {
@@ -137,22 +210,16 @@ export default {
 
     &_address {
       width: 100%;
+      margin-bottom: 0.375rem;
     }
 
-    &_with-text {
-      margin-right: 0;
+    &_email {
+      margin-bottom: 2.5rem;
     }
-  }
-
-  &__is-place-ok {
-    color: white;
-    text-transform: uppercase;
-    opacity: 0;
   }
 
   &__map {
     width: 100%;
-    background-color: steelblue;
     flex-grow: 10;
   }
 
@@ -187,6 +254,47 @@ export default {
     margin-top: 3.125rem;
   }
 
+  &__delivery-type {
+    display: flex;
+    //align-items: center;
+    margin-bottom: 1.5rem;
+
+    input {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border-radius: 50%;
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 1px solid #ebf9f7;
+      margin: 0 1.25rem 0 0;
+      cursor: pointer;
+
+      &:checked {
+        background: variables.$white;
+      }
+
+      & + label {
+        margin-right: 1.875rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__delivery-header {
+    text-transform: uppercase;
+    margin-right: 4.75rem;
+  }
+
+  &__list-link {
+    border-bottom: 1px solid variables.$white;
+    cursor: pointer;
+  }
+
+  &__choose-pvz {
+    margin-bottom: 1.5rem;
+  }
+
   .payment-method {
     width: 3.125rem;
     height: 3.125rem;
@@ -205,24 +313,25 @@ export default {
   }
 }
 
-@media (max-width: 1024px) and (orientation: portrait), (max-width: 720px){
-  .desktop{
+@media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
+  .desktop {
     display: none;
   }
 
-  .order{
+  .order {
     display: block;
     padding-top: 6.5rem;
     height: unset;
-    &__payment-methods{
+
+    &__payment-methods {
       margin-bottom: 2.85714285714rem;
     }
 
-    &__media-buttons{
+    &__media-buttons {
       margin: auto;
     }
 
-    &__social-media{
+    &__social-media {
       display: block;
       position: absolute;
       width: 100%;
@@ -234,22 +343,31 @@ export default {
       margin: 0 auto 3.57142857143rem;
     }
 
-    &__backwards{
+    &__backwards {
       display: none;
     }
-    &__is-place-ok{
-      text-align: center;
-      margin-top: 1.42857142857rem;
-      margin-bottom: 2.85714285714rem;
-    }
-    &__inputs{
+
+    &__inputs {
       width: 100%;
     }
-    &__input{
+
+    &__input {
       width: 100%;
     }
+
     &__payment-methods-label {
       margin-top: 1.42857142857rem;
+    }
+  }
+}
+</style>
+<style lang="scss">
+.order {
+  &__map {
+    & > div {
+      &:not(.b2c-map-container) {
+        display: none;
+      }
     }
   }
 }

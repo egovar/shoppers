@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -42,5 +44,23 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: {},
+
+  generate: {
+    async routes() {
+      const shoppers_stream = await fetch(
+        'https://bs-bags.ru/api/shoppers/get_all',
+        {
+          method: 'POST'
+        }
+      );
+      const shoppers = await shoppers_stream.json();
+      return shoppers.map((shopper) => {
+        return {
+          route: '/catalog/shoppers/' + shopper.id,
+          payload: shopper
+        };
+      });
+    }
+  }
 };

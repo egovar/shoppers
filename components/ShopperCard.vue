@@ -34,7 +34,6 @@
     <div class="shopper-card__content_mobile">
       <h2 class="shopper-card__title h2">{{ shopperData.name }}</h2>
       <p class="shopper-card__price p">₽ {{ shopperData.price / 100 }}</p>
-
     </div>
   </article>
 </template>
@@ -141,6 +140,7 @@ export default {
       }
 
       &_mobile {
+        padding-top: 0.57142857142rem;
         position: static;
         display: block;
       }

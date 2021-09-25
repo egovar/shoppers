@@ -136,7 +136,6 @@ function scrollToPromos() {
     0,
     document.getElementById('promos').getBoundingClientRect().top
   );
-  window.location.hash = 'promos';
 }
 
 export default {
@@ -177,7 +176,7 @@ export default {
   padding-top: 0.625rem;
   padding-bottom: 1.875rem;
 
-  &__menu{
+  &__menu {
     display: none;
   }
 

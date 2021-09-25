@@ -1,132 +1,235 @@
 <template>
-  <main class='test'>
-    <div class='test__content'>
-      <BackwardsArrow to='/' class='test__backwards desktop' />
-      <div class='test__numbers-mobile mobile'>
-        <span class='test__number active'>1</span>
-        <span class='test__number'>2</span>
-        <span class='test__number'>3</span>
-        <span class='test__number'>4</span>
-        <span class='test__number'>5</span>
+  <main class="test">
+    <div class="test__content">
+      <BackwardsArrow to="/" class="test__backwards desktop" />
+      <div class="test__numbers-mobile mobile">
+        <span class="test__number" :class="">1</span>
+        <span class="test__number">2</span>
+        <span class="test__number">3</span>
+        <span class="test__number">4</span>
+        <span class="test__number">5</span>
       </div>
       <transition>
-        <div class='test__question' v-if='question_number === 1'>
-          <p class='test__question-text p'>К какой группе вы себя больше всего относите?</p>
-          <form class='test__radio-group' key='question1'>
-            <div class='test__radio-button'>
-              <input class='test__input' type='radio' id='question-one__1' name='test'>
-              <label class='test__input-label p' for='question-one__1'>Бизнесмен</label>
+        <div class="test__question" v-if="question_number === 1">
+          <p class="test__question-text p">
+            К какой группе вы себя больше всего относите?
+          </p>
+          <form class="test__radio-group" key="question1">
+            <div class="test__radio-button">
+              <input
+                class="test__input"
+                type="radio"
+                id="question-one__1"
+                name="test"
+              />
+              <label class="test__input-label p" for="question-one__1"
+                >Бизнесмен</label
+              >
             </div>
-            <div class='test__radio-button'>
-              <input class='test__input' type='radio' id='question-one__2' name='test'>
-              <label class='test__input-label p' for='question-one__2'>Домохозяйка</label>
+            <div class="test__radio-button">
+              <input
+                class="test__input"
+                type="radio"
+                id="question-one__2"
+                name="test"
+              />
+              <label class="test__input-label p" for="question-one__2"
+                >Домохозяйка</label
+              >
             </div>
-            <div class='test__radio-button'>
-              <input class='test__input' type='radio' id='question-one__3' name='test'>
-              <label class='test__input-label p' for='question-one__3'>Студент</label>
+            <div class="test__radio-button">
+              <input
+                class="test__input"
+                type="radio"
+                id="question-one__3"
+                name="test"
+              />
+              <label class="test__input-label p" for="question-one__3"
+                >Студент</label
+              >
             </div>
-            <div class='test__radio-button'>
-              <input class='test__input' type='radio' id='question-one__4' name='test'>
-              <label class='test__input-label p' for='question-one__4'>Фрилансер</label>
+            <div class="test__radio-button">
+              <input
+                class="test__input"
+                type="radio"
+                id="question-one__4"
+                name="test"
+              />
+              <label class="test__input-label p" for="question-one__4"
+                >Фрилансер</label
+              >
             </div>
           </form>
         </div>
 
-        <div class='test__question' v-if='question_number === 2'>
-          <p class='test__question-text p'>Вы хотите, чтобы шоппер был акцентом в Вашем образе или чтобы он лишь
-            дополнял Вас?</p>
-          <form class='test__radio-group' key='question2'>
-            <div class='test__radio-button'>
-              <input class='test__input' type='radio' id='question-two__1' name='test'>
-              <label class='test__input-label p' for='question-two__1'>Хочу акцент к образу</label>
+        <div class="test__question" v-if="question_number === 2">
+          <p class="test__question-text p">
+            Вы хотите, чтобы шоппер был акцентом в Вашем образе или чтобы он
+            лишь дополнял Вас?
+          </p>
+          <form class="test__radio-group" key="question2">
+            <div class="test__radio-button">
+              <input
+                class="test__input"
+                type="radio"
+                id="question-two__1"
+                name="test"
+              />
+              <label class="test__input-label p" for="question-two__1"
+                >Хочу акцент к образу</label
+              >
             </div>
-            <div class='test__radio-button'>
-              <input class='test__input' type='radio' id='question-two__2' name='test'>
-              <label class='test__input-label p' for='question-two__2'>Хочу дополнение к себе красивому</label>
+            <div class="test__radio-button">
+              <input
+                class="test__input"
+                type="radio"
+                id="question-two__2"
+                name="test"
+              />
+              <label class="test__input-label p" for="question-two__2"
+                >Хочу дополнение к себе красивому</label
+              >
             </div>
           </form>
         </div>
 
-        <div class='test__question' v-if='question_number === 3'>
-          <p class='test__question-text p'>Какой шопер кажется вам наиболле привлекательным?</p>
-          <form class='test__radio-image-group' key='question3'>
-            <div class='test__radio-button'>
-              <input class='test__input test__input_photo' type='radio' id='question-three__1' name='test'>
-              <label class='test__input-label p' for='question-three__1'>
-                <img src='~static/test-photo.png' class='test__input-image'/>
+        <div class="test__question" v-if="question_number === 3">
+          <p class="test__question-text p">
+            Какой шопер кажется вам наиболле привлекательным?
+          </p>
+          <form class="test__radio-image-group" key="question3">
+            <div class="test__radio-button">
+              <input
+                class="test__input test__input_photo"
+                type="radio"
+                id="question-three__1"
+                name="test"
+              />
+              <label class="test__input-label p" for="question-three__1">
+                <img src="~static/test-photo.jpg" class="test__input-image" />
               </label>
             </div>
-            <div class='test__radio-button'>
-              <input class='test__input test__input_photo' type='radio' id='question-three__2' name='test'>
-              <label class='test__input-label p' for='question-three__2'>
-                <img src='~static/test-photo.png' class='test__input-image'/>
+            <div class="test__radio-button">
+              <input
+                class="test__input test__input_photo"
+                type="radio"
+                id="question-three__2"
+                name="test"
+              />
+              <label class="test__input-label p" for="question-three__2">
+                <img src="~static/test-photo.jpg" class="test__input-image" />
               </label>
             </div>
-            <div class='test__radio-button'>
-              <input class='test__input test__input_photo' type='radio' id='question-three__3' name='test'>
-              <label class='test__input-label p' for='question-three__3'>
-                <img src='~static/test-photo.png' class='test__input-image'/>
+            <div class="test__radio-button">
+              <input
+                class="test__input test__input_photo"
+                type="radio"
+                id="question-three__3"
+                name="test"
+              />
+              <label class="test__input-label p" for="question-three__3">
+                <img src="~static/test-photo.jpg" class="test__input-image" />
               </label>
             </div>
-            <div class='test__radio-button'>
-              <input class='test__input test__input_photo' type='radio' id='question-three__4' name='test'>
-              <label class='test__input-label p' for='question-three__4'>
-                <img src='~static/test-photo.png' class='test__input-image'/>
+            <div class="test__radio-button">
+              <input
+                class="test__input test__input_photo"
+                type="radio"
+                id="question-three__4"
+                name="test"
+              />
+              <label class="test__input-label p" for="question-three__4">
+                <img src="~static/test-photo.jpg" class="test__input-image" />
               </label>
             </div>
           </form>
         </div>
 
-        <div class='test__question' v-if='question_number === 4'>
-          <p class='test__question-text p'>Вы привыкли брать с собой только минимальный набор вещей или же любите взять
-            все, что Вам может понадобиться в течение дня?</p>
-          <form class='test__radio-group' key='question4'>
-            <div class='test__radio-button'>
-              <input class='test__input' type='radio' id='question-four__1' name='test'>
-              <label class='test__input-label p' for='question-four__1'>Минимализм - мое все</label>
+        <div class="test__question" v-if="question_number === 4">
+          <p class="test__question-text p">
+            Вы привыкли брать с собой только минимальный набор вещей или же
+            любите взять все, что Вам может понадобиться в течение дня?
+          </p>
+          <form class="test__radio-group" key="question4">
+            <div class="test__radio-button">
+              <input
+                class="test__input"
+                type="radio"
+                id="question-four__1"
+                name="test"
+              />
+              <label class="test__input-label p" for="question-four__1"
+                >Минимализм - мое все</label
+              >
             </div>
-            <div class='test__radio-button'>
-              <input class='test__input' type='radio' id='question-four__2' name='test'>
-              <label class='test__input-label p' for='question-four__2'>Всегда ношу с собой нобор вещей для
-                переезда</label>
+            <div class="test__radio-button">
+              <input
+                class="test__input"
+                type="radio"
+                id="question-four__2"
+                name="test"
+              />
+              <label class="test__input-label p" for="question-four__2"
+                >Всегда ношу с собой нобор вещей для переезда</label
+              >
             </div>
           </form>
         </div>
 
-        <div class='test__question' v-if='question_number === 5'>
-          <p class='test__question-text p'>Вы привыкли убирать телефон и картхолдер, в рюкзак или же носите эти предметы
-            в кармане ваших брюк?</p>
-          <form class='test__radio-group' key='question5'>
-            <div class='test__radio-button'>
-              <input class='test__input' type='radio' id='question-five__1' name='test'>
-              <label class='test__input-label p' for='question-five__1'>Привык хранить все на своих местах</label>
+        <div class="test__question" v-if="question_number === 5">
+          <p class="test__question-text p">
+            Вы привыкли убирать телефон и картхолдер, в рюкзак или же носите эти
+            предметы в кармане ваших брюк?
+          </p>
+          <form class="test__radio-group" key="question5">
+            <div class="test__radio-button">
+              <input
+                class="test__input"
+                type="radio"
+                id="question-five__1"
+                name="test"
+              />
+              <label class="test__input-label p" for="question-five__1"
+                >Привык хранить все на своих местах</label
+              >
             </div>
-            <div class='test__radio-button'>
-              <input class='test__input' type='radio' id='question-five__2' name='test'>
-              <label class='test__input-label p' for='question-five__2'>Привык кидать все в карманы</label>
+            <div class="test__radio-button">
+              <input
+                class="test__input"
+                type="radio"
+                id="question-five__2"
+                name="test"
+              />
+              <label class="test__input-label p" for="question-five__2"
+                >Привык кидать все в карманы</label
+              >
             </div>
           </form>
         </div>
 
-        <div v-if='results'>
-          <div >
-
-          </div>
+        <div v-if="results">
+          <div></div>
         </div>
       </transition>
 
-      <button class='button test__button' id='next_button' v-on:click='next_question'>Далее</button>
+      <button
+        class="button test__button"
+        id="next_button"
+        v-on:click="next_question"
+      >
+        Далее
+      </button>
     </div>
 
-    <div class='test__numbers desktop' id='question_numbers'>
-      <span class='test__number active' id='1'>1</span>
-      <span class='test__number' id='2'>2</span>
-      <span class='test__number' id='3'>3</span>
-      <span class='test__number' id='4'>4</span>
-      <span class='test__number' id='5'>5</span>
+    <div class="test__numbers desktop" id="question_numbers">
+      <span class="test__number active" id="1">1</span>
+      <span class="test__number" id="2">2</span>
+      <span class="test__number" id="3">3</span>
+      <span class="test__number" id="4">4</span>
+      <span class="test__number" id="5">5</span>
     </div>
 
-    <SocialMedia class='test__social-media mobile' />
+    <SocialMedia class="test__social-media mobile" />
   </main>
 </template>
 
@@ -142,17 +245,16 @@ export default {
     };
   },
   methods: {
-    next_question: function() {
+    next_question: function () {
       const previous_number = document.getElementById(this.question_number);
-      if (this.question_number === 5){
+      if (this.question_number === 5) {
         this.results = true;
         this.question_number = 0;
-        const next_button = document.getElementById("next_button");
-        const question_numbers = document.getElementById("question_numbers");
-        next_button.classList.add("hidden");
-        question_numbers.classList.add("hidden");
-      }
-      else{
+        const next_button = document.getElementById('next_button');
+        const question_numbers = document.getElementById('question_numbers');
+        next_button.classList.add('hidden');
+        question_numbers.classList.add('hidden');
+      } else {
         this.question_number += 1;
         const next_number = document.getElementById(this.question_number);
         previous_number.classList.remove('active');
@@ -163,17 +265,16 @@ export default {
   name: 'index',
   components: { SocialMedia, BackwardsArrow }
 };
-
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 @use '~assets/style/variables';
 
 .mobile {
   display: none;
 }
 
-.hidden{
+.hidden {
   display: none !important;
 }
 
@@ -184,7 +285,6 @@ export default {
   padding-top: 11rem;
   align-items: center;
   position: relative;
-
 
   &__backwards {
     position: absolute;
@@ -218,10 +318,10 @@ export default {
     }
   }
 
-  &__radio-image-group{
+  &__radio-image-group {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: .9375rem;
+    gap: 0.9375rem;
     margin-bottom: 5rem;
     > .test__radio-button {
       margin: 0 !important;
@@ -239,13 +339,13 @@ export default {
     border-radius: 50%;
     width: 1.5rem;
     height: 1.5rem;
-    border: 1px solid #EBF9F7;
+    border: 1px solid #ebf9f7;
     margin-right: 1.25rem;
     cursor: pointer;
 
-    &_photo{
-      &:checked{
-        + .test__input-label{
+    &_photo {
+      &:checked {
+        + .test__input-label {
           border: 1px solid whitesmoke;
         }
       }
@@ -256,9 +356,9 @@ export default {
     }
   }
 
-  &__input-image{
+  &__input-image {
     height: 20vh;
-    &:hover{
+    &:hover {
       border: 1px solid whitesmoke;
     }
   }
@@ -311,14 +411,13 @@ export default {
       bottom: 1.875rem;
     }
 
-
     &__numbers-mobile {
       margin-bottom: 3.75rem;
 
       .test__number {
         font-family: Roboto;
         font-weight: 300;
-        font-size: .875rem;
+        font-size: 0.875rem;
         line-height: 1rem;
 
         &:not(:last-child) {
@@ -326,8 +425,6 @@ export default {
         }
       }
     }
-
   }
 }
-
 </style>

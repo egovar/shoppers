@@ -1,6 +1,6 @@
 <template>
   <main class="shopper container">
-    <SocialMedia class='shopper__social-media mobile'/>
+    <SocialMedia class="shopper__social-media mobile" />
     <div class="shopper__info">
       <BackwardsArrow
         to="/catalog/big-with-pocket"
@@ -19,13 +19,11 @@
       <button class="button shopper__add-to-cart-button" @click="addToCart">
         Добавить в корзину
       </button>
-
     </div>
     <ShopperCarousel
       :photos="shopperData.pictures"
       :style="{ background: codeToColor[shopperData.color_id] }"
     />
-
   </main>
 </template>
 
@@ -47,8 +45,8 @@ export default {
       codeToColor
     };
   },
-  async asyncData({ params }) {
-    return await getShopper(params);
+  async asyncData({ payload }) {
+    return { shopperData: payload };
   },
   watch: {
     async '$route.params.id'(newValue) {
@@ -64,12 +62,29 @@ export default {
       });
       this.$refs.data.quantity = 1;
     }
+  },
+  head() {
+    return {
+      title: this.shopperData.seo_title,
+      meta: [
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.shopperData.seo_keywords
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.shopperData.seo_description
+        }
+      ]
+    };
   }
 };
 </script>
 
 <style scoped lang="scss">
-.mobile{
+.mobile {
   display: none;
 }
 
@@ -111,7 +126,7 @@ export default {
 }
 
 @media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
-  .mobile{
+  .mobile {
     display: flex;
   }
   .shopper {
@@ -123,7 +138,7 @@ export default {
     &__backwards-arrow {
       display: none;
     }
-    &__social-media{
+    &__social-media {
       margin: 3.57142857143rem auto 0;
     }
   }

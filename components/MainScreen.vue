@@ -20,7 +20,7 @@
         <SocialMedia class="main-screen__social-media" />
       </div>
     </div>
-    <div class="main-screen main-screen_mobile">Мобильная карусель</div>
+    <MobileMainCarousel class="main-screen main-screen_mobile" />
   </fragment>
 </template>
 

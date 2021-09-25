@@ -10,7 +10,7 @@
         Вашей квартиры.
       </p>
     </div>
-    <p class="delivery__cities p">
+    <p class="delivery__cities p" id="cities">
       <span v-for="city in cities1">{{ city }}</span>
     </p>
     <p class="delivery__cities p">
@@ -105,10 +105,10 @@ export default {
     flex-wrap: wrap;
     padding-top: 0;
     padding-bottom: 2.14285714286rem;
-    &__header{
+    &__header {
       margin-bottom: 1.42857142857rem;
     }
-    &__text{
+    &__text {
       margin-bottom: 1.42857142857rem;
     }
     &__for-customers {
