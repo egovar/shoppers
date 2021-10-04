@@ -44,7 +44,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  head() {
+    return {
+      title: 'Правила возврата',
+      meta: [{ hid: 'robots', name: 'robots', content: 'noindex' }]
+    };
+  }
+};
 </script>
 
 <style scoped lang="scss">

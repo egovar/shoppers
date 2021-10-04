@@ -3,16 +3,14 @@
     <img
       v-rellax="rellax"
       src="/red-shopper-bg.jpg"
+      ref="parallax"
       alt=""
       class="promos-container__background parallax__background"
     />
     <div class="promos-container__content parallax__content container">
       <p class="promos-container__text">Мы можем помочь вам с выбором</p>
-      <NuxtLink
-        to="/catalog/compilation-freelancer"
-        class="button promos-container__button"
-      >
-        Наши подборки
+      <NuxtLink to="/test" class="button promos-container__button">
+        Пройти тест
       </NuxtLink>
       <p class="promos-container__text">
         Два шопера со скидкой
@@ -33,8 +31,12 @@ import { rellaxConfig } from '@/utils/rellaxConfig';
 export default {
   data() {
     return {
-      rellax: rellaxConfig
+      rellax: undefined
     };
+  },
+  mounted() {
+    if (this.$refs.parallax.complete) this.rellax = rellaxConfig;
+    else this.$refs.parallax.onload = () => (this.rellax = rellaxConfig);
   }
 };
 </script>
@@ -59,7 +61,7 @@ export default {
     margin-bottom: 13.125rem;
   }
 }
-@media (max-width: 1024px) and (orientation: portrait) {
+@media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
   .promos-container {
     display: none;
   }

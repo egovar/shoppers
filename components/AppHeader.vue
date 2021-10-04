@@ -36,9 +36,11 @@
       <NuxtLink to="/">
         <h1 class="h1">Black square</h1>
       </NuxtLink>
-      <NuxtLink to="/cart" class="header__cart-link">
-        <svg-icon name="cart" class="icon" />
-      </NuxtLink>
+      <div class="cart__wrapper">
+        <NuxtLink to="/cart" class="header__cart-link">
+          <svg-icon name="cart" class="icon" />
+        </NuxtLink>
+      </div>
     </header>
     <div
       class="header__menu container"
@@ -236,6 +238,7 @@ export default {
     }
 
     &_mobile {
+      height: 6rem !important;
       display: flex;
       position: fixed;
       top: 0;
@@ -255,13 +258,16 @@ export default {
       align-items: center;
       justify-content: center;
       transition: transform 0.2s ease;
-
+      height: 1.42857142857rem !important;
+      padding: 0;
+      width: 2rem;
       &_active {
         transform: rotate(90deg);
       }
 
       > .icon {
         width: 2rem;
+        height: 1.42857142857rem !important;
         aspect-ratio: 1/1;
       }
     }
@@ -269,8 +275,10 @@ export default {
     &__cart-link {
       > .icon {
         width: 1.71428571429rem;
-        aspect-ratio: 8/9;
+        height: 2rem;
+        aspect-ratio: 8/9 !important;
       }
+      height: 2rem !important;
     }
 
     &__menu {
@@ -307,6 +315,10 @@ export default {
         margin-bottom: 3.57142857143rem;
       }
     }
+  }
+
+  .cart-wrapper {
+    height: 2rem;
   }
 }
 </style>

@@ -44,17 +44,21 @@
 export default {
   data() {
     return {
+      isMounted: false,
       currentPhoto: 0,
-      carouselTimer: null,
-      photoWidth: null
+      carouselTimer: null
     };
   },
   computed: {
     carouselTranslate() {
-      return {
-        transform:
-          'translateX(' + -1 * this.photoWidth * this.currentPhoto + 'px)'
-      };
+      if (this.isMounted)
+        return {
+          transform:
+            'translateX(' +
+            -1 * this.$refs.carousel.clientWidth * this.currentPhoto +
+            'px)'
+        };
+      else return 0;
     }
   },
   methods: {
@@ -67,7 +71,7 @@ export default {
     }
   },
   mounted() {
-    this.photoWidth = this.$refs.carousel.clientWidth;
+    this.isMounted = true;
     this.carouselTimer = setInterval(() => {
       this.currentPhoto = (this.currentPhoto + 1) % 3;
     }, 2000);

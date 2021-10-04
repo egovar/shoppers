@@ -98,7 +98,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  head() {
+    return {
+      title: 'Правила доставки',
+      meta: [{ hid: 'robots', name: 'robots', content: 'noindex' }]
+    };
+  }
+};
 </script>
 
 <style scoped lang="scss">

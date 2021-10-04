@@ -131,7 +131,7 @@ export default {
   }
 }
 
-@media (max-width: 1024px) and (orientation: portrait) {
+@media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
   .shopper-card {
     background: none;
     &__content {
@@ -148,8 +148,8 @@ export default {
 
     &__photo {
       width: 100%;
-      height: unset;
-      aspect-ratio: 1/1;
+      height: 11.9285714286rem;
+      aspect-ratio: 1/1 !important;
     }
 
     &__title {

@@ -10,10 +10,11 @@ export const cartWatcher = {
     }
   },
   watch: {
-    cart(newVal, oldVal) {
-      if (newVal !== oldVal) {
+    cart: {
+      handler(newVal) {
         rewriteCart(newVal);
-      }
+      },
+      deep: true
     }
   },
   mounted() {

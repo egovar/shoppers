@@ -1,428 +1,319 @@
 <template>
-  <main class="test">
-    <div class="test__content">
-      <BackwardsArrow to="/" class="test__backwards desktop" />
-      <div class="test__numbers-mobile mobile">
-        <span class="test__number" :class="">1</span>
-        <span class="test__number">2</span>
-        <span class="test__number">3</span>
-        <span class="test__number">4</span>
-        <span class="test__number">5</span>
-      </div>
-      <transition>
-        <div class="test__question" v-if="question_number === 1">
-          <p class="test__question-text p">
-            К какой группе вы себя больше всего относите?
-          </p>
-          <form class="test__radio-group" key="question1">
-            <div class="test__radio-button">
-              <input
-                class="test__input"
-                type="radio"
-                id="question-one__1"
-                name="test"
-              />
-              <label class="test__input-label p" for="question-one__1"
-                >Бизнесмен</label
-              >
-            </div>
-            <div class="test__radio-button">
-              <input
-                class="test__input"
-                type="radio"
-                id="question-one__2"
-                name="test"
-              />
-              <label class="test__input-label p" for="question-one__2"
-                >Домохозяйка</label
-              >
-            </div>
-            <div class="test__radio-button">
-              <input
-                class="test__input"
-                type="radio"
-                id="question-one__3"
-                name="test"
-              />
-              <label class="test__input-label p" for="question-one__3"
-                >Студент</label
-              >
-            </div>
-            <div class="test__radio-button">
-              <input
-                class="test__input"
-                type="radio"
-                id="question-one__4"
-                name="test"
-              />
-              <label class="test__input-label p" for="question-one__4"
-                >Фрилансер</label
-              >
-            </div>
-          </form>
-        </div>
-
-        <div class="test__question" v-if="question_number === 2">
-          <p class="test__question-text p">
-            Вы хотите, чтобы шоппер был акцентом в Вашем образе или чтобы он
-            лишь дополнял Вас?
-          </p>
-          <form class="test__radio-group" key="question2">
-            <div class="test__radio-button">
-              <input
-                class="test__input"
-                type="radio"
-                id="question-two__1"
-                name="test"
-              />
-              <label class="test__input-label p" for="question-two__1"
-                >Хочу акцент к образу</label
-              >
-            </div>
-            <div class="test__radio-button">
-              <input
-                class="test__input"
-                type="radio"
-                id="question-two__2"
-                name="test"
-              />
-              <label class="test__input-label p" for="question-two__2"
-                >Хочу дополнение к себе красивому</label
-              >
-            </div>
-          </form>
-        </div>
-
-        <div class="test__question" v-if="question_number === 3">
-          <p class="test__question-text p">
-            Какой шопер кажется вам наиболле привлекательным?
-          </p>
-          <form class="test__radio-image-group" key="question3">
-            <div class="test__radio-button">
-              <input
-                class="test__input test__input_photo"
-                type="radio"
-                id="question-three__1"
-                name="test"
-              />
-              <label class="test__input-label p" for="question-three__1">
-                <img src="~static/test-photo.jpg" class="test__input-image" />
-              </label>
-            </div>
-            <div class="test__radio-button">
-              <input
-                class="test__input test__input_photo"
-                type="radio"
-                id="question-three__2"
-                name="test"
-              />
-              <label class="test__input-label p" for="question-three__2">
-                <img src="~static/test-photo.jpg" class="test__input-image" />
-              </label>
-            </div>
-            <div class="test__radio-button">
-              <input
-                class="test__input test__input_photo"
-                type="radio"
-                id="question-three__3"
-                name="test"
-              />
-              <label class="test__input-label p" for="question-three__3">
-                <img src="~static/test-photo.jpg" class="test__input-image" />
-              </label>
-            </div>
-            <div class="test__radio-button">
-              <input
-                class="test__input test__input_photo"
-                type="radio"
-                id="question-three__4"
-                name="test"
-              />
-              <label class="test__input-label p" for="question-three__4">
-                <img src="~static/test-photo.jpg" class="test__input-image" />
-              </label>
-            </div>
-          </form>
-        </div>
-
-        <div class="test__question" v-if="question_number === 4">
-          <p class="test__question-text p">
-            Вы привыкли брать с собой только минимальный набор вещей или же
-            любите взять все, что Вам может понадобиться в течение дня?
-          </p>
-          <form class="test__radio-group" key="question4">
-            <div class="test__radio-button">
-              <input
-                class="test__input"
-                type="radio"
-                id="question-four__1"
-                name="test"
-              />
-              <label class="test__input-label p" for="question-four__1"
-                >Минимализм - мое все</label
-              >
-            </div>
-            <div class="test__radio-button">
-              <input
-                class="test__input"
-                type="radio"
-                id="question-four__2"
-                name="test"
-              />
-              <label class="test__input-label p" for="question-four__2"
-                >Всегда ношу с собой нобор вещей для переезда</label
-              >
-            </div>
-          </form>
-        </div>
-
-        <div class="test__question" v-if="question_number === 5">
-          <p class="test__question-text p">
-            Вы привыкли убирать телефон и картхолдер, в рюкзак или же носите эти
-            предметы в кармане ваших брюк?
-          </p>
-          <form class="test__radio-group" key="question5">
-            <div class="test__radio-button">
-              <input
-                class="test__input"
-                type="radio"
-                id="question-five__1"
-                name="test"
-              />
-              <label class="test__input-label p" for="question-five__1"
-                >Привык хранить все на своих местах</label
-              >
-            </div>
-            <div class="test__radio-button">
-              <input
-                class="test__input"
-                type="radio"
-                id="question-five__2"
-                name="test"
-              />
-              <label class="test__input-label p" for="question-five__2"
-                >Привык кидать все в карманы</label
-              >
-            </div>
-          </form>
-        </div>
-
-        <div v-if="results">
-          <div></div>
-        </div>
-      </transition>
-
-      <button
-        class="button test__button"
-        id="next_button"
-        v-on:click="next_question"
+  <main class="test container">
+    <BackwardsArrow
+      to="#"
+      @click.native="backwards()"
+      v-if="currentQuestion < test.length"
+      class="test__backwards-arrow"
+    />
+    <transition name="fade" mode="out-in">
+      <div
+        :key="index"
+        class="test__item"
+        v-for="(item, index) in test"
+        v-if="currentQuestion === index"
       >
-        Далее
-      </button>
+        <p class="test__question p">{{ item.question }}</p>
+        <div
+          class="test__answers"
+          :class="item.type === 'img' ? 'test__answers_photo' : null"
+        >
+          <div
+            class="test__answer"
+            v-for="(answer, answerIndex) in item.answers"
+            :key="index + '_' + answerIndex"
+          >
+            <input
+              type="radio"
+              :name="'radio_' + (index + 1)"
+              :value="answer.value"
+              v-model="userAnswers[index]"
+              :id="'radio_input_' + index + '_' + answerIndex"
+            />
+            <label :for="'radio_input_' + index + '_' + answerIndex">
+              <img :src="'/' + answer.src" v-if="item.type === 'img'" />
+              <span class="p" v-else>{{ answer.text }}</span>
+            </label>
+          </div>
+        </div>
+        <button
+          class="button test__next-button"
+          @click="currentQuestion += 1"
+          :disabled="!userAnswers[index]"
+        >
+          Далее
+        </button>
+      </div>
+      <div v-if="currentQuestion >= test.length" class="test__results">
+        <NuxtLink
+          to="/catalog/big-with-pocket"
+          class="button results__button results__button_mobile"
+        >
+          Перейти в каталог
+        </NuxtLink>
+        <div class="test__shoppers">
+          <ShopperCard
+            v-for="shopper in shoppers"
+            :shopper-data="shopper"
+            :key="shopper.id"
+            class="card"
+          />
+        </div>
+        <div class="test__results-text">
+          <h2 class="h2">Ваши результаты:</h2>
+          <p class="p">{{ resultText }}</p>
+          <NuxtLink
+            to="/catalog/big-with-pocket"
+            class="button results__button results__button_desktop"
+          >
+            Перейти в каталог
+          </NuxtLink>
+        </div>
+      </div>
+    </transition>
+    <div class="test__numbers" v-if="currentQuestion < test.length">
+      <span
+        v-for="(question, index) in test"
+        class="test__number h2"
+        :class="currentQuestion === index ? 'test__number_active' : null"
+      >
+        {{ index + 1 }}
+      </span>
     </div>
-
-    <div class="test__numbers desktop" id="question_numbers">
-      <span class="test__number active" id="1">1</span>
-      <span class="test__number" id="2">2</span>
-      <span class="test__number" id="3">3</span>
-      <span class="test__number" id="4">4</span>
-      <span class="test__number" id="5">5</span>
-    </div>
-
-    <SocialMedia class="test__social-media mobile" />
+    <SocialMedia class="test__social-media" />
   </main>
 </template>
 
 <script>
-import BackwardsArrow from '../../components/BackwardsArrow';
-import SocialMedia from '../../components/SocialMedia';
+import { test, results } from '@/utils/test';
+import BackwardsArrow from '@/components/BackwardsArrow';
+import { request } from '@/api/server';
+import ShopperCard from '@/components/ShopperCard';
 
 export default {
+  components: { ShopperCard, BackwardsArrow },
   data() {
     return {
-      question_number: 1,
-      results: false
+      test,
+      results,
+      userAnswers: [],
+      currentQuestion: 0,
+      shoppers: [],
+      resultText: ''
     };
   },
   methods: {
-    next_question: function () {
-      const previous_number = document.getElementById(this.question_number);
-      if (this.question_number === 5) {
-        this.results = true;
-        this.question_number = 0;
-        const next_button = document.getElementById('next_button');
-        const question_numbers = document.getElementById('question_numbers');
-        next_button.classList.add('hidden');
-        question_numbers.classList.add('hidden');
+    backwards() {
+      if (this.currentQuestion === 0) {
+        this.$router.push('/');
       } else {
-        this.question_number += 1;
-        const next_number = document.getElementById(this.question_number);
-        previous_number.classList.remove('active');
-        next_number.classList.add('active');
+        this.currentQuestion -= 1;
       }
+    },
+    async getResults() {
+      const resultData = results[this.userAnswers[2]][this.userAnswers[3]];
+      this.resultText = resultData.text;
+      const shoppersId = await request('/groups', { id: resultData.id });
+      this.shoppers = await Promise.all(
+        shoppersId.map((shopper) => {
+          return request('/get', { id: shopper.id });
+        })
+      );
     }
   },
-  name: 'index',
-  components: { SocialMedia, BackwardsArrow }
+  watch: {
+    currentQuestion(newVal) {
+      if (newVal >= test.length) this.getResults();
+    }
+  },
+  head() {
+    return {
+      title: 'Тест',
+      meta: [{ hid: 'robots', name: 'robots', content: 'noindex' }]
+    };
+  }
 };
 </script>
 
 <style scoped lang="scss">
 @use '~assets/style/variables';
 
-.mobile {
-  display: none;
-}
-
-.hidden {
-  display: none !important;
-}
-
 .test {
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-top: 11rem;
+  padding-top: 14.5rem;
   align-items: center;
   position: relative;
+  min-height: 100vh;
 
-  &__backwards {
-    position: absolute;
-    top: 6.25rem;
-    left: 3.75rem;
-  }
-
-  &__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  &__numbers {
-    position: absolute;
-    right: 15.4375rem;
-    top: 10.5rem;
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__number {
-    font-family: Roboto;
-    font-weight: 400;
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-    opacity: 0.2;
-
-    &:not(:last-child) {
-      margin-bottom: 4.375rem;
-    }
-  }
-
-  &__radio-image-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.9375rem;
-    margin-bottom: 5rem;
-    > .test__radio-button {
-      margin: 0 !important;
-
-      > .test__input {
-        display: none;
-      }
-    }
-  }
-
-  &__input {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 50%;
-    width: 1.5rem;
-    height: 1.5rem;
-    border: 1px solid #ebf9f7;
-    margin-right: 1.25rem;
-    cursor: pointer;
-
-    &_photo {
-      &:checked {
-        + .test__input-label {
-          border: 1px solid whitesmoke;
-        }
-      }
-    }
-
-    &:checked {
-      background: variables.$white;
-    }
-  }
-
-  &__input-image {
-    height: 20vh;
-    &:hover {
-      border: 1px solid whitesmoke;
-    }
-  }
-
-  &__radio-group {
-    margin-bottom: 6.25rem;
-  }
-
-  &__radio-button {
-    display: flex;
-    align-items: center;
-
-    &:not(:last-child) {
-      margin-bottom: 1.25rem;
-    }
+  &__item {
+    width: 36rem;
+    position: relative;
+    min-height: calc(100vh - 14.5rem - 3.125rem);
   }
 
   &__question {
-    display: flex;
-    flex-direction: column;
+    margin-bottom: 3.125rem;
     text-align: center;
-    align-items: center;
-    max-width: 35.75rem;
   }
 
-  &__question-text {
-    margin-bottom: 3.125rem;
+  &__answers {
+    &:not(&_photo) {
+      padding-left: 5.625rem;
+      > div:not(:last-child) {
+        margin-bottom: 1.25rem;
+      }
+      input {
+        + label {
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          &::before {
+            content: '';
+            flex-shrink: 0;
+            display: block;
+            border-radius: 50%;
+            border: 1px solid variables.$white;
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 1.25rem;
+            transition: background-color 0.2s ease;
+          }
+        }
+        &:checked + label::before {
+          background-color: variables.$white;
+        }
+      }
+    }
+    &_photo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+
+      img {
+        border: 1px solid transparent;
+        transition: border-color 0.2s ease;
+        display: block;
+        cursor: pointer;
+      }
+      input:checked + label > img {
+        border-color: variables.$white;
+      }
+    }
+  }
+
+  &__answer {
+    position: relative;
+    input {
+      position: absolute;
+      opacity: 0;
+      z-index: -1;
+    }
+    img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    }
+  }
+
+  &__next-button {
+    margin: 6.25rem auto 0;
+  }
+
+  &__numbers {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 26.25rem;
+    position: absolute;
+    left: calc(50% + 18rem + 1.75rem);
+  }
+
+  &__number {
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+    &_active {
+      opacity: 1;
+    }
+  }
+
+  &__backwards-arrow {
+    position: absolute;
+    left: 3.125rem;
+    top: 6rem;
+  }
+
+  &__social-media {
+    margin: 3.125rem auto;
+  }
+  &__results {
+    display: flex;
+    margin-top: -8rem;
+  }
+  &__results-text {
+    width: 35%;
+    padding-left: 1rem;
+    .h2 {
+      margin-bottom: 1rem;
+    }
+  }
+  &__shoppers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 64.7%;
+    gap: 1rem;
+  }
+  .results__button {
+    margin: 1rem auto;
+    &_mobile {
+      display: none;
+    }
   }
 }
 
-.active {
-  opacity: 1;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
 }
 
 @media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
-  .desktop {
-    display: none;
-  }
-
-  .mobile {
-    display: block;
-  }
-
   .test {
-    padding-top: 6rem;
-
-    &__social-media {
-      display: flex;
-      position: absolute;
-      bottom: 1.875rem;
+    padding-top: 11rem;
+    &__backwards-arrow {
+      display: none;
+    }
+    &__numbers {
+      flex-direction: row;
+      height: unset;
+      width: 8.57142857143rem;
+      top: 6rem;
+      left: calc(50vw - (8.57142857143rem / 2));
+    }
+    &__item {
+      width: 100%;
     }
 
-    &__numbers-mobile {
-      margin-bottom: 3.75rem;
-
-      .test__number {
-        font-family: Roboto;
-        font-weight: 300;
-        font-size: 0.875rem;
-        line-height: 1rem;
-
-        &:not(:last-child) {
-          margin-right: 1.25rem;
-        }
+    &__results {
+      flex-direction: column-reverse;
+      margin-top: -4rem;
+    }
+    &__shoppers {
+      width: 100%;
+    }
+    &__results-text {
+      width: 100%;
+      padding-left: 0;
+      margin-bottom: 2rem;
+    }
+    .results__button {
+      &_desktop {
+        display: none;
+      }
+      &_mobile {
+        display: flex;
       }
     }
   }

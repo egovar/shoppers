@@ -15,7 +15,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  head() {
+    return {
+      title: 'Контакты'
+    };
+  }
+};
 </script>
 
 <style scoped lang="scss">

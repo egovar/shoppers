@@ -1,9 +1,10 @@
 <template>
-  <fragment>
+  <div>
     <div class="main-screen parallax">
       <img
         v-rellax="rellax"
         src="/blue-shopper-bg.jpg"
+        ref="parallax"
         alt=""
         class="main-screen__background parallax__background"
       />
@@ -20,18 +21,27 @@
         <SocialMedia class="main-screen__social-media" />
       </div>
     </div>
-    <MobileMainCarousel class="main-screen main-screen_mobile" />
-  </fragment>
+    <MobileMainCarousel
+      class="main-screen main-screen_mobile"
+      v-if="isMobile"
+    />
+  </div>
 </template>
 
 <script>
 import { rellaxConfig } from '~/utils/rellaxConfig';
+import { isMobile } from '@/mixins/isMobile';
 
 export default {
+  mixins: [isMobile],
   data() {
     return {
-      rellax: rellaxConfig
+      rellax: undefined
     };
+  },
+  mounted() {
+    if (this.$refs.parallax.complete) this.rellax = rellaxConfig;
+    else this.$refs.parallax.onload = () => (this.rellax = rellaxConfig);
   }
 };
 </script>
@@ -68,7 +78,7 @@ export default {
   }
 }
 
-@media (max-width: 1024px) and (orientation: portrait) {
+@media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
   .main-screen {
     &:not(&_mobile) {
       display: none;
@@ -78,7 +88,8 @@ export default {
       margin-top: 6.36rem; //header height
       display: block;
       width: 100%;
-      aspect-ratio: 15/11;
+      height: 19.6428571429rem;
+      aspect-ratio: 15/11 !important;
     }
   }
 }

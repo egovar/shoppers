@@ -80,6 +80,16 @@ h1, h2, h3, h4, h5, h6, p {
     color: variables.$black;
     border: 1px solid transparent;
   }
+
+  &[disabled] {
+    opacity: 0.5;
+    &:hover {
+      background-color: transparent;
+      color: variables.$white;
+      border: 1px solid variables.$white;
+      cursor: unset;
+    }
+  }
 }
 
 .parallax {

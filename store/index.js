@@ -10,7 +10,14 @@ export const getters = {
   isLoading: ({ isLoading }) => isLoading,
   errorMessage: ({ errorMessage }) => errorMessage,
   cart: ({ cart }) => cart,
-  cartLength: ({ cart }) => cart.length
+  cartLength: ({ cart }) => {
+    if (cart.length > 1)
+      return cart.reduce(
+        (shopper, newShopper) => shopper.quantity + newShopper.quantity
+      );
+    if (cart.length === 1) return cart[0].quantity;
+    else return 0;
+  }
 };
 
 export const mutations = {

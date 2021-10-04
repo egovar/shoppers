@@ -37,7 +37,9 @@
       </div>
     </div>
     <div class="compilations compilations_mobile container">
-      <h2 class="h2 compilations__title">Шоперы из нашей персональной подборки</h2>
+      <h2 class="h2 compilations__title">
+        Шоперы из нашей персональной подборки
+      </h2>
       <p class="compilations__subtitle">Специально для вас</p>
       <div class="compilations__badges">
         <button
@@ -49,19 +51,28 @@
           {{ category.name }}
         </button>
       </div>
-      <div
-        class="compilations__shoppers"
+      <transition
+        name="fade"
+        mode="out-in"
         v-for="(category, index) in compilations"
-        v-show="activeCategoryIndex === index"
         :key="category.id"
       >
-        <ShopperCard
-          v-for="shopper in category.shoppers"
-          :shopper-data="shopper"
-          :key="shopper.id"
-        />
-      </div>
-      <button class='button compilations__button'>Перейти к подборке</button>
+        <div
+          class="compilations__shoppers"
+          v-show="activeCategoryIndex === index"
+        >
+          <ShopperCard
+            v-for="shopper in category.shoppers"
+            :shopper-data="shopper"
+            :key="shopper.id"
+          />
+        </div>
+      </transition>
+      <NuxtLink
+        :to="'/catalog/' + compilations[activeCategoryIndex].link"
+        class="button compilations__button"
+        >Перейти к подборке</NuxtLink
+      >
     </div>
   </fragment>
 </template>
@@ -158,17 +169,17 @@ export default {
     &_mobile {
       display: block;
     }
-    &__title{
+    &__title {
       text-align: center;
       font-weight: 500;
       margin-bottom: 0.35714285714rem;
     }
-    &__subtitle{
+    &__subtitle {
       text-align: center;
       font-weight: 300;
       margin-bottom: 1.42857142857rem;
     }
-    &__button{
+    &__button {
       position: unset;
       margin: auto;
     }
@@ -184,6 +195,11 @@ export default {
       overflow: auto;
       margin-right: -1.28571428571rem;
       margin-bottom: 1rem;
+      &::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 0;
+        height: 0;
+      }
     }
     &__badges-item {
       display: inline-flex;
@@ -204,5 +220,13 @@ export default {
       }
     }
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
 }
 </style>

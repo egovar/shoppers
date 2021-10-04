@@ -107,10 +107,11 @@ export default {
   }
 }
 
-@media (max-width: 1024px) and (orientation: portrait) {
+@media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
   .carousel {
     width: 100%;
-    aspect-ratio: 113/103;
+    height: 12rem;
+    aspect-ratio: 113/103 !important;
     margin: 0;
   }
 }

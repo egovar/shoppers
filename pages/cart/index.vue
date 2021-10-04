@@ -105,10 +105,9 @@
         Перейти к оформлению
       </NuxtLink>
     </div>
-    <div class='cart__social-media mobile'>
-      <SocialMedia class='cart__media-buttons'/>
+    <div class="cart__social-media mobile">
+      <SocialMedia class="cart__media-buttons" />
     </div>
-
   </main>
 </template>
 
@@ -181,13 +180,19 @@ export default {
     );
     await this.getShoppers();
   },
-  fetchOnServer: false
+  fetchOnServer: false,
+  head() {
+    return {
+      title: 'Корзина',
+      meta: [{ hid: 'robots', name: 'robots', content: 'noindex' }]
+    };
+  }
 };
 </script>
 
 <style scoped lang="scss">
 @use '~assets/style/variables';
-.mobile{
+.mobile {
   display: none;
 }
 
@@ -306,7 +311,7 @@ export default {
 }
 
 @media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
-  .mobile{
+  .mobile {
     display: block;
   }
 
@@ -324,11 +329,11 @@ export default {
       }
     }
 
-    &__media-buttons{
+    &__media-buttons {
       margin: auto;
     }
 
-    &__social-media{
+    &__social-media {
       position: absolute;
       width: 100%;
       left: 0;
@@ -339,11 +344,17 @@ export default {
       &:not(&_mobile) {
         display: none;
       }
+      margin: 0.71428571428rem 0;
     }
     &__info {
       &_mobile {
-        display: unset;
+        display: flex;
+        flex-direction: column;
       }
+    }
+    &__buy-button {
+      margin-right: auto;
+      margin-left: auto;
     }
   }
 }

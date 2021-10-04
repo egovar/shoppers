@@ -22,7 +22,9 @@
     </div>
     <ShopperCarousel
       :photos="shopperData.pictures"
-      :style="{ background: codeToColor[shopperData.color_id] }"
+      :style="{
+        background: shopperData.color_id === 1 ? codeToColor[1] : '#FFFFFF'
+      }"
     />
   </main>
 </template>
@@ -45,8 +47,11 @@ export default {
       codeToColor
     };
   },
-  async asyncData({ payload }) {
-    return { shopperData: payload };
+  async asyncData({ payload, params }) {
+    return {
+      shopperData:
+        payload || (await request('/get', { id: parseInt(params.id) }))
+    };
   },
   watch: {
     async '$route.params.id'(newValue) {

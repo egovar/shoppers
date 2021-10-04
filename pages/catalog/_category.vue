@@ -16,43 +16,58 @@
         </NuxtLink>
       </div>
     </div>
-    <h2 class='h2 compilations__header mobile' v-if='isMobile'>{{categoryName}}</h2>
+    <h2 class="h2 compilations__header mobile" v-if="isMobile">
+      {{ categoryName }}
+    </h2>
     <ShopperCard
       v-for="shopper in shoppers"
       :shopper-data="shopper"
       class="shoppers__card"
       :key="shopper.id"
     />
-    <SocialMedia class='compilations__social-media mobile'/>
+    <SocialMedia class="compilations__social-media mobile" />
   </main>
 </template>
 
 <script>
 import { compilations } from '@/utils/compilations';
 import { request } from '@/api/server';
-import { routeToCompilation, routeToModel } from '@/utils/routeToCode';
+import { routeToModel } from '@/utils/routeToCode';
 import { isMobile } from '../../mixins/isMobile';
 import SocialMedia from '../../components/SocialMedia';
 
 async function getShoppers(parameters) {
   let shoppers;
-  let categoryName
+  let categoryName;
   if (!parameters.category) {
     shoppers = await request('/get_all');
-    categoryName = "Все шоперы"
+    categoryName = 'Все шоперы';
   } else if (parameters.category.startsWith('compilation')) {
-    const id = compilations.find(
+    const categoryData = compilations.find(
       ({ link }) => link === parameters.category
-    ).shoppersCode;
+    );
+    const id = categoryData.shoppersCode;
     shoppers = await request('/groups', {
       id
     });
-    categoryName = "Подборка" // Используй только это слово, название подборки с цифрой не пиши
+    categoryName = categoryData.name; // Используй только это слово, название подборки с цифрой не пиши
   } else {
     shoppers = await request('/get_by_model', {
       id: routeToModel[parameters.category]
     });
-    categoryName = "Модель" // Используй только это слово, какой это шопер потом определю
+    switch (parameters.category) {
+      case 'big-no-pocket':
+        categoryName = 'Большие без кармана';
+        break;
+      case 'big-with-pocket':
+        categoryName = 'Большие с карманом';
+        break;
+      case 'medium-no-pocket':
+        categoryName = 'Средние без кармана';
+        break;
+      default:
+        categoryName = 'Средние с карманом';
+    } // Используй только это слово, какой это шопер потом определю
   }
   return { shoppers, categoryName };
 }
@@ -73,13 +88,25 @@ export default {
     async '$route.params.category'(newValue) {
       this.shoppers = await getShoppers(newValue);
     }
+  },
+  head() {
+    return {
+      title: 'Хлопковые шопперы с бесплатной доставкой по всей России',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'Купить шопперы от производителя! В наличии с принтом и без, разные цвета и модели. Высокая плотность ткани! Экологичные, удобные сумки легко располагаются на плече, на сгибе руки в локте или простой в руках. Идеально подходит для шоппинга, похода на пляж, в тренажерный зал и для прогулок с детьми'
+        }
+      ]
+    };
   }
 };
 </script>
 
 <style scoped lang="scss">
-
-.mobile{
+.mobile {
   display: none;
 }
 
@@ -92,7 +119,6 @@ export default {
   flex-wrap: wrap;
   padding-top: 6rem;
   padding-right: 3.75rem;
-
 
   &__card {
     &:nth-child(4n + 1),
@@ -145,7 +171,7 @@ export default {
   }
 }
 @media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
-  .mobile{
+  .mobile {
     display: block;
   }
 
@@ -163,17 +189,16 @@ export default {
   }
   .compilations {
     display: none;
-    &__header{
+    &__header {
       grid-column-start: 1;
       grid-column-end: 3;
       margin-bottom: 1.78571428571rem;
     }
-    &__social-media{
+    &__social-media {
       display: flex;
       margin: 10rem auto 1.5rem;
       grid-column-start: 1;
       grid-column-end: 3;
-
     }
   }
 }

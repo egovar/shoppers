@@ -74,12 +74,15 @@ export default {};
     right: 3.125rem;
   }
 }
-@media (max-width: 1024px) and (orientation: portrait) {
+@media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
   .manufacture {
-    background: none;
-    padding-top: 0;
+    //background-attachment: unset;
+    background-position: 50% 50%;
+    background-size: auto 100%;
+    background-clip: padding-box;
+    padding-top: 1rem;
     padding-bottom: 2.21428571429rem;
-    &__header{
+    &__header {
       margin-bottom: 1.42857142857rem;
     }
     &__container {
@@ -89,11 +92,11 @@ export default {};
     &__text {
       width: 100%;
       margin-bottom: 1.28571428571rem;
-      &:last-child{
+      &:last-child {
         margin-bottom: 0;
       }
     }
-    &__social-media{
+    &__social-media {
       position: unset;
       margin: auto;
     }

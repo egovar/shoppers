@@ -115,6 +115,9 @@ export default {
       margin-right: 0;
     }
   }
+  &__quantity-cell {
+    flex-wrap: nowrap;
+  }
   &__change-quantity-button {
     cursor: pointer;
     border: none;
@@ -124,13 +127,14 @@ export default {
     font-size: 1.125rem;
     line-height: 139%;
     font-weight: 300;
+    padding: 0;
   }
   &__quantity {
     border-bottom: 1px solid variables.$white;
   }
 }
 
-@media (max-width: 1024px) and (orientation: portrait) {
+@media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
   .shopper-data {
     grid-template-columns: 1fr 1fr;
     grid-gap: calc(10rem / 14) 1.57142857143rem;

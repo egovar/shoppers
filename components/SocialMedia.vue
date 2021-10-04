@@ -1,20 +1,20 @@
 <template>
   <div class="social-media">
-    <a href="https://vk.com" target="_blank">
-      <svg-icon name="vk" class="social-media__logo social-media__logo_vk" />
-    </a>
-    <a href="https://instagram.com" target="_blank">
+    <!--    <a href="https://vk.com" target="_blank">-->
+    <!--      <svg-icon name="vk" class="social-media__logo social-media__logo_vk" />-->
+    <!--    </a>-->
+    <a href="https://www.instagram.com/black.square.official/" target="_blank">
       <svg-icon
         name="instagram"
         class="social-media__logo social-media__logo_insta"
       />
     </a>
-    <a href="https://tiktok.com" target="_blank">
-      <svg-icon
-        name="tiktok"
-        class="social-media__logo social-media__logo_tiktok"
-      />
-    </a>
+    <!--    <a href="https://tiktok.com" target="_blank">-->
+    <!--      <svg-icon-->
+    <!--        name="tiktok"-->
+    <!--        class="social-media__logo social-media__logo_tiktok"-->
+    <!--      />-->
+    <!--    </a>-->
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {};
 <style scoped lang="scss">
 .social-media {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; //space-between
   align-items: center;
   width: 9rem;
   &__logo {
