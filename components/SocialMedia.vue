@@ -28,6 +28,7 @@ export default {};
   justify-content: center; //space-between
   align-items: center;
   width: 9rem;
+  height: 2rem;
   &__logo {
     display: block;
     &_vk {

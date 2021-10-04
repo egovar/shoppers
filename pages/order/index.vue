@@ -442,9 +442,10 @@ export default {
 
     &__social-media {
       display: block;
+      position: absolute;
+      bottom: 3.57142857143rem;
       width: 100%;
       left: 0;
-      margin-bottom: 1.5rem;
     }
 
     &__payment-button {

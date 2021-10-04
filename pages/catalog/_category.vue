@@ -196,7 +196,7 @@ export default {
     }
     &__social-media {
       display: flex;
-      margin: 10rem auto 1.5rem;
+      margin: 2rem auto 3.57142857143rem;
       grid-column-start: 1;
       grid-column-end: 3;
     }

@@ -295,13 +295,18 @@ export default {
     &__item {
       width: 100%;
     }
+    &__social-media{
+      margin: 2rem auto 3.57142857143rem;
+    }
 
     &__results {
       flex-direction: column-reverse;
       margin-top: -4rem;
+      width: 100%;
     }
     &__shoppers {
       width: 100%;
+      grid-template-columns: calc(50% - 0.5rem) calc(50% - 0.5rem);
     }
     &__results-text {
       width: 100%;

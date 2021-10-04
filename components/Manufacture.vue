@@ -30,6 +30,7 @@
         Перед отправкой изделия проверяются вручную: качество нанесения принта,
         качество выполненных швов и наличие каких-либо дефектов.
       </p>
+
     </div>
     <SocialMedia class="manufacture__social-media" />
   </div>
@@ -81,13 +82,13 @@ export default {};
     background-size: auto 100%;
     background-clip: padding-box;
     padding-top: 1rem;
-    padding-bottom: 2.21428571429rem;
+    padding-bottom: 0;
     &__header {
       margin-bottom: 1.42857142857rem;
     }
     &__container {
       max-height: unset;
-      padding-bottom: 5.5rem;
+      padding-bottom: 2rem;
     }
     &__text {
       width: 100%;
@@ -97,8 +98,11 @@ export default {};
       }
     }
     &__social-media {
+      height: calc(2rem + 3.57142857143rem);
       position: unset;
-      margin: auto;
+      width: 100%;
+      right: unset;
+      padding-bottom: 3.57142857143rem;
     }
   }
 }
