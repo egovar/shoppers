@@ -33,8 +33,17 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/svg-sprite'
+    '@nuxtjs/svg-sprite',
+    '@nuxtjs/yandex-metrika'
   ],
+
+  yandexMetrika: {
+    id: 86941558,
+    clickmap: true,
+    trackLinks: true,
+    accurateTrackBounce: true,
+    webvisor: true
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
