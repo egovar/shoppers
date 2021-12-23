@@ -48,7 +48,6 @@ export default {
     font-size: 1.5rem;
     font-weight: 400;
     line-height: 117%;
-    font-variant: small-caps;
     &_strong {
       font-size: 2.75rem;
       font-weight: 500;

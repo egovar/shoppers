@@ -305,7 +305,6 @@ export default {
       font-weight: 300;
       &_primary {
         margin-bottom: 1.42857142857rem;
-        font-variant: small-caps;
         font-weight: 500;
       }
       &_about-us {

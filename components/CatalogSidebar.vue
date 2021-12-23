@@ -40,7 +40,6 @@ export default {
       opacity: 0.2;
       font-size: 1.5rem;
       line-height: 117%;
-      font-variant: small-caps;
       transition: opacity 0.2s ease;
     }
     &:last-child {

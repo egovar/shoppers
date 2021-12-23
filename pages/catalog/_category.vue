@@ -25,7 +25,7 @@
       class="shoppers__card"
       :key="shopper.id"
     />
-    <SocialMedia class="compilations__social-media mobile" />
+    <SocialMedia class="compilations__social-media" />
   </main>
 </template>
 
@@ -169,6 +169,12 @@ export default {
   &__subheader {
     margin-bottom: 3.125rem;
   }
+  &__social-media {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 2rem auto 3.57142857143rem;
+  }
 }
 @media (max-width: 1024px) and (orientation: portrait), (max-width: 720px) {
   .mobile {
@@ -195,8 +201,6 @@ export default {
       margin-bottom: 1.78571428571rem;
     }
     &__social-media {
-      display: flex;
-      margin: 2rem auto 3.57142857143rem;
       grid-column-start: 1;
       grid-column-end: 3;
     }
